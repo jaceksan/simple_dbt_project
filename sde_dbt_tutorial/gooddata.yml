@@ -1,0 +1,20 @@
+
+data_sources:
+  - dbt_output: dev
+    gooddata:
+      host: postgres
+      port: 5432
+  - dbt_output: prod
+    gooddata:
+      host: vertica
+      port: 5433
+
+workspaces:
+  - id: marketing
+    name: Marketing
+    dbt_models:
+      - name: marketing
+  - id: core
+    name: "Core with Dims"
+    tags:
+      - core_dims

@@ -1,0 +1,348 @@
+ldm:
+  datasets:
+  - attributes:
+    - description: City
+      id: dim_customers.city
+      labels:
+      - description: City
+        id: dim_customers.city
+        primary: true
+        source_column: city
+        tags:
+        - Dim customers
+        title: City
+      tags:
+      - Dim customers
+      title: City
+    - description: Customer id
+      id: dim_customers.customer_id
+      labels:
+      - description: Customer id
+        id: dim_customers.customer_id
+        primary: true
+        source_column: customer_id
+        tags:
+        - Dim customers
+        title: Customer id
+      tags:
+      - Dim customers
+      title: Customer id
+    - description: State name
+      id: dim_customers.state_name
+      labels:
+      - description: State name
+        id: dim_customers.state_name
+        primary: true
+        source_column: state_name
+        tags:
+        - Dim customers
+        title: State name
+      tags:
+      - Dim customers
+      title: State name
+    - description: Zipcode
+      id: dim_customers.zipcode
+      labels:
+      - description: Zipcode
+        id: dim_customers.zipcode
+        primary: true
+        source_column: zipcode
+        tags:
+        - Dim customers
+        title: Zipcode
+      tags:
+      - Dim customers
+      title: Zipcode
+    data_source_table_id:
+      data_source_id: prod
+      id: dim_customers
+      type: dataSource
+    description: Dim customers
+    facts: []
+    grain:
+    - id: dim_customers.customer_id
+      type: attribute
+    id: dim_customers
+    references:
+    - identifier:
+        id: datetime_created
+        type: dataset
+      multivalue: false
+      source_columns:
+      - datetime_created
+    - identifier:
+        id: datetime_updated
+        type: dataset
+      multivalue: false
+      source_columns:
+      - datetime_updated
+    - identifier:
+        id: dim_states
+        type: dataset
+      multivalue: false
+      source_columns:
+      - state_code
+    - identifier:
+        id: valid_from
+        type: dataset
+      multivalue: false
+      source_columns:
+      - valid_from
+    - identifier:
+        id: valid_to
+        type: dataset
+      multivalue: false
+      source_columns:
+      - valid_to
+    tags:
+    - Dim customers
+    title: Dim customers
+  - attributes:
+    - description: State code
+      id: dim_states.state_code
+      labels:
+      - description: State code
+        id: dim_states.state_code
+        primary: true
+        source_column: state_code
+        tags:
+        - Dim states
+        title: State code
+      tags:
+      - Dim states
+      title: State code
+    - description: State id
+      id: dim_states.state_id
+      labels:
+      - description: State id
+        id: dim_states.state_id
+        primary: true
+        source_column: state_id
+        tags:
+        - Dim states
+        title: State id
+      tags:
+      - Dim states
+      title: State id
+    - description: State name
+      id: dim_states.state_name
+      labels:
+      - description: State name
+        id: dim_states.state_name
+        primary: true
+        source_column: state_name
+        tags:
+        - Dim states
+        title: State name
+      tags:
+      - Dim states
+      title: State name
+    data_source_table_id:
+      data_source_id: prod
+      id: dim_states
+      type: dataSource
+    description: Dim states
+    facts: []
+    grain:
+    - id: dim_states.state_code
+      type: attribute
+    id: dim_states
+    references: []
+    tags:
+    - Dim states
+    title: Dim states
+  - attributes:
+    - description: Order id
+      id: fct_orders.order_id
+      labels:
+      - description: Order id
+        id: fct_orders.order_id
+        primary: true
+        source_column: order_id
+        tags:
+        - Fct orders
+        title: Order id
+      tags:
+      - Fct orders
+      title: Order id
+    - description: Order status
+      id: fct_orders.order_status
+      labels:
+      - description: Order status
+        id: fct_orders.order_status
+        primary: true
+        source_column: order_status
+        tags:
+        - Fct orders
+        title: Order status
+      tags:
+      - Fct orders
+      title: Order status
+    data_source_table_id:
+      data_source_id: prod
+      id: fct_orders
+      type: dataSource
+    description: Fct orders
+    facts: []
+    grain:
+    - id: fct_orders.order_id
+      type: attribute
+    id: fct_orders
+    references:
+    - identifier:
+        id: dim_customers
+        type: dataset
+      multivalue: false
+      source_columns:
+      - customer_id
+    - identifier:
+        id: order_approved_at
+        type: dataset
+      multivalue: false
+      source_columns:
+      - order_approved_at
+    - identifier:
+        id: order_delivered_carrier_date
+        type: dataset
+      multivalue: false
+      source_columns:
+      - order_delivered_carrier_date
+    - identifier:
+        id: order_delivered_customer_date
+        type: dataset
+      multivalue: false
+      source_columns:
+      - order_delivered_customer_date
+    - identifier:
+        id: order_estimated_delivery_date
+        type: dataset
+      multivalue: false
+      source_columns:
+      - order_estimated_delivery_date
+    - identifier:
+        id: order_purchase_timestamp
+        type: dataset
+      multivalue: false
+      source_columns:
+      - order_purchase_timestamp
+    tags:
+    - Fct orders
+    title: Fct orders
+  date_instances:
+  - granularities:
+    - DAY
+    - MONTH
+    - QUARTER
+    - WEEK
+    - YEAR
+    granularities_formatting:
+      title_base: ''
+      title_pattern: '%titleBase - %granularityTitle'
+    id: datetime_created
+    tags:
+    - Datetime created
+    title: Datetime created
+  - granularities:
+    - DAY
+    - MONTH
+    - QUARTER
+    - WEEK
+    - YEAR
+    granularities_formatting:
+      title_base: ''
+      title_pattern: '%titleBase - %granularityTitle'
+    id: datetime_updated
+    tags:
+    - Datetime updated
+    title: Datetime updated
+  - granularities:
+    - DAY
+    - MONTH
+    - QUARTER
+    - WEEK
+    - YEAR
+    granularities_formatting:
+      title_base: ''
+      title_pattern: '%titleBase - %granularityTitle'
+    id: order_approved_at
+    tags:
+    - Order approved at
+    title: Order approved at
+  - granularities:
+    - DAY
+    - MONTH
+    - QUARTER
+    - WEEK
+    - YEAR
+    granularities_formatting:
+      title_base: ''
+      title_pattern: '%titleBase - %granularityTitle'
+    id: order_delivered_carrier_date
+    tags:
+    - Order delivered carrier date
+    title: Order delivered carrier date
+  - granularities:
+    - DAY
+    - MONTH
+    - QUARTER
+    - WEEK
+    - YEAR
+    granularities_formatting:
+      title_base: ''
+      title_pattern: '%titleBase - %granularityTitle'
+    id: order_delivered_customer_date
+    tags:
+    - Order delivered customer date
+    title: Order delivered customer date
+  - granularities:
+    - DAY
+    - MONTH
+    - QUARTER
+    - WEEK
+    - YEAR
+    granularities_formatting:
+      title_base: ''
+      title_pattern: '%titleBase - %granularityTitle'
+    id: order_estimated_delivery_date
+    tags:
+    - Order estimated delivery date
+    title: Order estimated delivery date
+  - granularities:
+    - DAY
+    - MONTH
+    - QUARTER
+    - WEEK
+    - YEAR
+    granularities_formatting:
+      title_base: ''
+      title_pattern: '%titleBase - %granularityTitle'
+    id: order_purchase_timestamp
+    tags:
+    - Order purchase timestamp
+    title: Order purchase timestamp
+  - granularities:
+    - DAY
+    - MONTH
+    - QUARTER
+    - WEEK
+    - YEAR
+    granularities_formatting:
+      title_base: ''
+      title_pattern: '%titleBase - %granularityTitle'
+    id: valid_from
+    tags:
+    - Valid from
+    title: Valid from
+  - granularities:
+    - DAY
+    - MONTH
+    - QUARTER
+    - WEEK
+    - YEAR
+    granularities_formatting:
+      title_base: ''
+      title_pattern: '%titleBase - %granularityTitle'
+    id: valid_to
+    tags:
+    - Valid to
+    title: Valid to

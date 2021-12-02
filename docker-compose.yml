@@ -1,3 +1,5 @@
+version: '3.7'
+
 services:
     postgres:
       image: postgres:13
@@ -8,11 +10,44 @@ services:
       volumes:
         - ./raw_data:/input_data
         - ./temp:/temp
-        - ./warehouse_setup:/docker-entrypoint-initdb.d
-      healthcheck:
-        test: ["CMD", "pg_isready", "-U", "airflow"]
-        interval: 5s
-        retries: 5
-      restart: always
+        - ./warehouse_setup/postgres:/docker-entrypoint-initdb.d
       ports:
-        - "5432:5432"
+        - "15432:5432"
+
+    vertica:
+      environment:
+        VERTICA_DB_NAME: "dbt"
+        APP_DB_USER: "dbt"
+        APP_DB_PASSWORD: "password1234"
+        TZ: "${VERTICA_CUSTOM_TZ:-Europe/Prague}"
+      image: vertica/vertica-ce:11.0.0-0
+      ports:
+        - "5433:5433"
+        - "5444:5444"
+      volumes:
+        - vertica-data:/data
+        - ./raw_data:/input_data
+        - ./warehouse_setup/vertica:/docker-entrypoint-initdb.d
+
+    gooddata-cn-ce:
+      image: gooddata/gooddata-cn-ce:dev_latest
+      ports:
+        - "3000:3000"
+      volumes:
+        - gooddata-cn-ce-data:/data
+      environment:
+        LICENSE_AND_PRIVACY_POLICY_ACCEPTED: "YES"
+
+    cockroach:
+      image: 'cockroachdb/cockroach:v21.1.12'
+      ports:
+        - "26257:26257"
+        - "8080:8080"
+      command: start-single-node --insecure
+      volumes:
+        - "cockroach-data:/cockroach/cockroach-data"
+
+volumes:
+  gooddata-cn-ce-data:
+  vertica-data:
+  cockroach-data:

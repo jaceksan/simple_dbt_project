@@ -1,0 +1,23 @@
+# Top level key represents DBT project
+sde_dbt_tutorial:
+  dbt_data_source: dev
+  data_source_name: postgres_dev
+  workspaces:
+    - marketing:
+        dbt_models:
+          - marketing
+          - shared
+
+# Top level key is GoodData data source
+postgres_dev:
+  dbt_data_source_location:
+  workspaces:
+    - marketing:
+        dbt_models:
+          - marketing
+          - shared
+
+# Ultimate question
+# How to version DBT models and GD PDM/LDM/ADM consistently?
+# DBT devs change models -> PDM -> LDM
+# GD devs change ADM/LDM

@@ -1,0 +1,204 @@
+ldm:
+  datasets:
+  - attributes:
+    - description: Customer city
+      id: customer_orders.customer_city
+      labels:
+      - description: Customer city
+        id: customer_orders.customer_city
+        primary: true
+        source_column: customer_city
+        tags:
+        - Customer orders
+        title: Customer city
+      tags:
+      - Customer orders
+      title: Customer city
+    - description: Customer id
+      id: customer_orders.customer_id
+      labels:
+      - description: Customer id
+        id: customer_orders.customer_id
+        primary: true
+        source_column: customer_id
+        tags:
+        - Customer orders
+        title: Customer id
+      tags:
+      - Customer orders
+      title: Customer id
+    - description: Customer state code
+      id: customer_orders.customer_state_code
+      labels:
+      - description: Customer state code
+        id: customer_orders.customer_state_code
+        primary: true
+        source_column: customer_state_code
+        tags:
+        - Customer orders
+        title: Customer state code
+      tags:
+      - Customer orders
+      title: Customer state code
+    - description: Customer state name
+      id: customer_orders.customer_state_name
+      labels:
+      - description: Customer state name
+        id: customer_orders.customer_state_name
+        primary: true
+        source_column: customer_state_name
+        tags:
+        - Customer orders
+        title: Customer state name
+      tags:
+      - Customer orders
+      title: Customer state name
+    - description: Customer zipcode
+      id: customer_orders.customer_zipcode
+      labels:
+      - description: Customer zipcode
+        id: customer_orders.customer_zipcode
+        primary: true
+        source_column: customer_zipcode
+        tags:
+        - Customer orders
+        title: Customer zipcode
+      tags:
+      - Customer orders
+      title: Customer zipcode
+    - description: Order id
+      id: customer_orders.order_id
+      labels:
+      - description: Order id
+        id: customer_orders.order_id
+        primary: true
+        source_column: order_id
+        tags:
+        - Customer orders
+        title: Order id
+      tags:
+      - Customer orders
+      title: Order id
+    - description: Order status
+      id: customer_orders.order_status
+      labels:
+      - description: Order status
+        id: customer_orders.order_status
+        primary: true
+        source_column: order_status
+        tags:
+        - Customer orders
+        title: Order status
+      tags:
+      - Customer orders
+      title: Order status
+    data_source_table_id:
+      data_source_id: dev
+      id: customer_orders
+      type: dataSource
+    description: Customer orders
+    facts: []
+    grain:
+    - id: customer_orders.order_id
+      type: attribute
+    id: customer_orders
+    references:
+    - identifier:
+        id: order_approved_at
+        type: dataset
+      multivalue: false
+      source_columns:
+      - order_approved_at
+    - identifier:
+        id: order_delivered_carrier_date
+        type: dataset
+      multivalue: false
+      source_columns:
+      - order_delivered_carrier_date
+    - identifier:
+        id: order_delivered_customer_date
+        type: dataset
+      multivalue: false
+      source_columns:
+      - order_delivered_customer_date
+    - identifier:
+        id: order_estimated_delivery_date
+        type: dataset
+      multivalue: false
+      source_columns:
+      - order_estimated_delivery_date
+    - identifier:
+        id: order_purchase_timestamp
+        type: dataset
+      multivalue: false
+      source_columns:
+      - order_purchase_timestamp
+    tags:
+    - Customer orders
+    title: Customer orders
+  date_instances:
+  - granularities:
+    - DAY
+    - MONTH
+    - QUARTER
+    - WEEK
+    - YEAR
+    granularities_formatting:
+      title_base: ''
+      title_pattern: '%titleBase - %granularityTitle'
+    id: order_approved_at
+    tags:
+    - Order approved at
+    title: Order approved at
+  - granularities:
+    - DAY
+    - MONTH
+    - QUARTER
+    - WEEK
+    - YEAR
+    granularities_formatting:
+      title_base: ''
+      title_pattern: '%titleBase - %granularityTitle'
+    id: order_delivered_carrier_date
+    tags:
+    - Order delivered carrier date
+    title: Order delivered carrier date
+  - granularities:
+    - DAY
+    - MONTH
+    - QUARTER
+    - WEEK
+    - YEAR
+    granularities_formatting:
+      title_base: ''
+      title_pattern: '%titleBase - %granularityTitle'
+    id: order_delivered_customer_date
+    tags:
+    - Order delivered customer date
+    title: Order delivered customer date
+  - granularities:
+    - DAY
+    - MONTH
+    - QUARTER
+    - WEEK
+    - YEAR
+    granularities_formatting:
+      title_base: ''
+      title_pattern: '%titleBase - %granularityTitle'
+    id: order_estimated_delivery_date
+    tags:
+    - Order estimated delivery date
+    title: Order estimated delivery date
+  - granularities:
+    - DAY
+    - MONTH
+    - QUARTER
+    - WEEK
+    - YEAR
+    granularities_formatting:
+      title_base: ''
+      title_pattern: '%titleBase - %granularityTitle'
+    id: order_purchase_timestamp
+    tags:
+    - Order purchase timestamp
+    title: Order purchase timestamp

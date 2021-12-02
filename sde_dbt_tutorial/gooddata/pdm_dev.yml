@@ -1,0 +1,186 @@
+pdm:
+  tables:
+  - columns:
+    - data_type: STRING
+      is_primary_key: false
+      name: customer_city
+      referenced_table_column: ''
+      referenced_table_id: ''
+    - data_type: INT
+      is_primary_key: false
+      name: customer_id
+      referenced_table_column: ''
+      referenced_table_id: ''
+    - data_type: STRING
+      is_primary_key: false
+      name: customer_state_code
+      referenced_table_column: ''
+      referenced_table_id: ''
+    - data_type: STRING
+      is_primary_key: false
+      name: customer_state_name
+      referenced_table_column: ''
+      referenced_table_id: ''
+    - data_type: STRING
+      is_primary_key: false
+      name: customer_zipcode
+      referenced_table_column: ''
+      referenced_table_id: ''
+    - data_type: TIMESTAMP
+      is_primary_key: false
+      name: order_approved_at
+      referenced_table_column: ''
+      referenced_table_id: ''
+    - data_type: TIMESTAMP
+      is_primary_key: false
+      name: order_delivered_carrier_date
+      referenced_table_column: ''
+      referenced_table_id: ''
+    - data_type: TIMESTAMP
+      is_primary_key: false
+      name: order_delivered_customer_date
+      referenced_table_column: ''
+      referenced_table_id: ''
+    - data_type: TIMESTAMP
+      is_primary_key: false
+      name: order_estimated_delivery_date
+      referenced_table_column: ''
+      referenced_table_id: ''
+    - data_type: STRING
+      is_primary_key: true
+      name: order_id
+      referenced_table_column: ''
+      referenced_table_id: ''
+    - data_type: TIMESTAMP
+      is_primary_key: false
+      name: order_purchase_timestamp
+      referenced_table_column: ''
+      referenced_table_id: ''
+    - data_type: STRING
+      is_primary_key: false
+      name: order_status
+      referenced_table_column: ''
+      referenced_table_id: ''
+    id: customer_orders
+    path:
+    - warehouse
+    - customer_orders
+    type: VIEW
+  - columns:
+    - data_type: STRING
+      is_primary_key: false
+      name: city
+      referenced_table_column: ''
+      referenced_table_id: ''
+    - data_type: INT
+      is_primary_key: true
+      name: customer_id
+      referenced_table_column: ''
+      referenced_table_id: ''
+    - data_type: TIMESTAMP
+      is_primary_key: false
+      name: datetime_created
+      referenced_table_column: ''
+      referenced_table_id: ''
+    - data_type: TIMESTAMP
+      is_primary_key: false
+      name: datetime_updated
+      referenced_table_column: ''
+      referenced_table_id: ''
+    - data_type: STRING
+      is_primary_key: false
+      name: state_code
+      referenced_table_column: state_code
+      referenced_table_id: dim_states
+    - data_type: STRING
+      is_primary_key: false
+      name: state_name
+      referenced_table_column: ''
+      referenced_table_id: ''
+    - data_type: TIMESTAMP
+      is_primary_key: false
+      name: valid_from
+      referenced_table_column: ''
+      referenced_table_id: ''
+    - data_type: TIMESTAMP
+      is_primary_key: false
+      name: valid_to
+      referenced_table_column: ''
+      referenced_table_id: ''
+    - data_type: STRING
+      is_primary_key: false
+      name: zipcode
+      referenced_table_column: ''
+      referenced_table_id: ''
+    id: dim_customers
+    path:
+    - warehouse
+    - dim_customers
+    type: TABLE
+  - columns:
+    - data_type: STRING
+      is_primary_key: true
+      name: state_code
+      referenced_table_column: ''
+      referenced_table_id: ''
+    - data_type: INT
+      is_primary_key: false
+      name: state_id
+      referenced_table_column: ''
+      referenced_table_id: ''
+    - data_type: STRING
+      is_primary_key: false
+      name: state_name
+      referenced_table_column: ''
+      referenced_table_id: ''
+    id: dim_states
+    path:
+    - warehouse
+    - dim_states
+    type: TABLE
+  - columns:
+    - data_type: INT
+      is_primary_key: false
+      name: customer_id
+      referenced_table_column: customer_id
+      referenced_table_id: dim_customers
+    - data_type: TIMESTAMP
+      is_primary_key: false
+      name: order_approved_at
+      referenced_table_column: ''
+      referenced_table_id: ''
+    - data_type: TIMESTAMP
+      is_primary_key: false
+      name: order_delivered_carrier_date
+      referenced_table_column: ''
+      referenced_table_id: ''
+    - data_type: TIMESTAMP
+      is_primary_key: false
+      name: order_delivered_customer_date
+      referenced_table_column: ''
+      referenced_table_id: ''
+    - data_type: TIMESTAMP
+      is_primary_key: false
+      name: order_estimated_delivery_date
+      referenced_table_column: ''
+      referenced_table_id: ''
+    - data_type: STRING
+      is_primary_key: true
+      name: order_id
+      referenced_table_column: ''
+      referenced_table_id: ''
+    - data_type: TIMESTAMP
+      is_primary_key: false
+      name: order_purchase_timestamp
+      referenced_table_column: ''
+      referenced_table_id: ''
+    - data_type: STRING
+      is_primary_key: false
+      name: order_status
+      referenced_table_column: ''
+      referenced_table_id: ''
+    id: fct_orders
+    path:
+    - warehouse
+    - fct_orders
+    type: TABLE

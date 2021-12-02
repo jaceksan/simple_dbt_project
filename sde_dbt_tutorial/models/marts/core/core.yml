@@ -1,9 +1,38 @@
 version: 2
 
 models:
+  - name: dim_states
+    tags:
+      - core_dims
+    columns:
+      - name: state_code
+        tests:
+          - not_null
+          - unique
   - name: dim_customers
+    tags:
+      - core_dims
     columns:
       - name: customer_id
         tests:
           - not_null
+          - unique
+      - name: state_code
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_states')
+              field: state_code
   - name: fct_orders
+    tags:
+      - core_dims
+    columns:
+      - name: order_id
+        tests:
+          - not_null
+          - unique
+      - name: customer_id
+        tests:
+          - relationships:
+              to: ref('dim_customers')
+              field: customer_id
